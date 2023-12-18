@@ -19,3 +19,25 @@ If within 1000 requests there are 100 unique user ids the there should be only a
 ```bash
 go test
 ```
+
+## Solution
+
+Just mock the db with a map[int]\*User
+
+```go
+    db    map[int]*User
+```
+
+The cache is just a map[int]\*User
+
+```go
+    cache    map[int]*User
+```
+
+```go
+type Server struct {
+	db    map[int]*User
+	cache map[int]*User
+	dbhit int
+}
+```
